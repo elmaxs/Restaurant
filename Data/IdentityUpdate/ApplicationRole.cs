@@ -4,7 +4,7 @@ namespace Restaurant.Data.IdentityUpdate
 {
     public class ApplicationRole : IdentityRole<Guid>
     {
-        public ApplicationRole() { }
-        public ApplicationRole(string roleName) : base() { Name = roleName; }
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string roleName) : base(roleName) { }
     }
 }

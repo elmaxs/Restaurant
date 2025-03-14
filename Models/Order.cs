@@ -1,4 +1,5 @@
 ﻿using Restaurant.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Restaurant.Models
 {
@@ -16,6 +17,7 @@ namespace Restaurant.Models
         public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
         public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.Prepay;
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TotalPrice { get; set; }
     }
 }

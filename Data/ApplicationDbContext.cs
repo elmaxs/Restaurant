@@ -34,8 +34,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.HasKey(au => au.Id);
-
             builder.HasMany(au => au.Reservations)
                 .WithOne(r => r.ApplicationUser)
                 .HasForeignKey(r => r.ApplicationUserId)
