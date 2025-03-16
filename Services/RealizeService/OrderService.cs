@@ -48,7 +48,7 @@ namespace Restaurant.Services.RealizeService
                 .FirstOrDefaultAsync();
         }
 
-        public async Task CreateOrderAsync(Guid userId, ICollection<OrderItem> orderItems, PaymentMethod paymentMethod)
+        public async Task<Order> CreateOrderAsync(Guid userId, ICollection<OrderItem> orderItems, PaymentMethod paymentMethod)
         {
             var totalPrice = orderItems.Sum(s => s.Price * s.Quantity);
 
@@ -63,7 +63,27 @@ namespace Restaurant.Services.RealizeService
 
             await _applicationDbContext.AddAsync(order);
             await _applicationDbContext.SaveChangesAsync();
-            //return order;
+            
+            return order;
+        }
+
+        public async Task<List<Order>> GetAllOrdersAsync()
+        {
+            return await _applicationDbContext.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.MenuItem)
+                .ToListAsync();
+        }
+
+        public async Task<Order?> UpdateOrderStatusAsync(Guid orderId, OrderStatus newStatus)
+        {
+            var order = await _applicationDbContext.Orders.Where(o => o.Id == orderId).FirstOrDefaultAsync();
+            if (order == null)
+                return null;
+
+            order.OrderStatus = newStatus;
+            await _applicationDbContext.SaveChangesAsync();
+            return order;
         }
     }
 }

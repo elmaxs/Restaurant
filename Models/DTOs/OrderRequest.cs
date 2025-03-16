@@ -4,7 +4,7 @@ namespace Restaurant.Models.DTOs
 {
     public class OrderRequest
     {
-        public ICollection<OrderItemRequest> OtrderItems { get; set; } = new List<OrderItemRequest>();
+        public ICollection<OrderItemRequest> OrderItems { get; set; } = new List<OrderItemRequest>();
         public PaymentMethod PaymentMethod { get; set; }
     }
 
