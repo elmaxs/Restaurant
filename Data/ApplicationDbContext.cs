@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Restaurant.Data.IdentityUpdate;
 using Restaurant.Models;
+using static Restaurant.Data.ApplicationDbContext.ReservationConfiguration;
 
 namespace Restaurant.Data;
 
@@ -18,6 +19,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<MenuItem> MenuItems { get; set; }
     public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<Table> Tables { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,6 +29,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
         modelBuilder.ApplyConfiguration(new MenuItemConfiguration());
         modelBuilder.ApplyConfiguration(new IngredientConfiguration());
         modelBuilder.ApplyConfiguration(new ReservationConfiguration());
+        modelBuilder.ApplyConfiguration(new TableConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 
@@ -123,6 +126,24 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
                 .WithMany(au => au.Reservations)
                 .HasForeignKey(r => r.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(r => r.Table)
+                .WithMany(t => t.Reservations)
+                .HasForeignKey(r => r.TableId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
+        public class TableConfiguration : IEntityTypeConfiguration<Table>
+        {
+            public void Configure(EntityTypeBuilder<Table> builder)
+            {
+                builder.HasKey(t => t.Id);
+
+                builder.HasMany(t => t.Reservations)
+                    .WithOne(r => r.Table)
+                    .HasForeignKey(r => r.TableId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            }
         }
     }
 }
