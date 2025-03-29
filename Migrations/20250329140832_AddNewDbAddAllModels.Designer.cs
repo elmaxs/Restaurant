@@ -12,8 +12,8 @@ using Restaurant.Data;
 namespace Restaurant.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250318182952_UpdateReservationAddTable")]
-    partial class UpdateReservationAddTable
+    [Migration("20250329140832_AddNewDbAddAllModels")]
+    partial class AddNewDbAddAllModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -187,7 +187,6 @@ namespace Restaurant.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")

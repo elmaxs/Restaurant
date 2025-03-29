@@ -7,6 +7,6 @@ namespace Restaurant.Models
         public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
         public ICollection<Order> Orders { get; set; } = new List<Order>();
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

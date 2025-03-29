@@ -1,0 +1,23 @@
+﻿@model Restaurant.Models.DTOs.MenuItemDto
+
+@{
+    ViewData["Title"] = "Додати страву";
+}
+
+<h2>Додати страву</h2>
+
+<form method="post">
+    <label>Назва:</label>
+    <input type="text" asp-for="Name" required />
+
+    <label>Ціна:</label>
+    <input type="number" asp-for="Price" required />
+
+    <label>Опис:</label>
+    <textarea asp-for="Description"></textarea>
+
+    <label>Зображення (URL):</label>
+    <input type="text" asp-for="ImageUrl" />
+
+    <button type="submit">Додати</button>
+</form>

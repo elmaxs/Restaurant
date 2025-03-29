@@ -1,0 +1,17 @@
+﻿@model Restaurant.Models.DTOs.TableDto
+
+@{
+    ViewData["Title"] = "Додати столик";
+}
+
+<h2>Додати столик</h2>
+
+<form method="post">
+    <label>Номер столика:</label>
+    <input type="number" asp-for="TableNumber" required />
+
+    <label>Кількість місць:</label>
+    <input type="number" asp-for="Capacity" required />
+
+    <button type="submit">Додати</button>
+</form>
