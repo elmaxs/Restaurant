@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.Data;
 using Restaurant.Data.IdentityUpdate;
 using Restaurant.Models;
+using Restaurant.Services.Interface;
+using Restaurant.Services.RealizeService;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 var app = builder.Build();
 

@@ -1,10 +1,29 @@
-﻿@model Restaurant.Models.DTOs.TableDto
+﻿@using Restaurant.Enums
+@model Restaurant.Models.DTOs.TableDto
 
 @{
     ViewData["Title"] = "Додати столик";
 }
 
-<h2>Додати столик</h2>
+<h2>Add table</h2>
+
+<form method="post">
+    <label>Table number</label>
+    <input type="number" asp-for="TableNumber" required />
+
+    <lable>Capacity</lable>
+    <input type="number" asp-for="Capacity" required />
+
+    <label>Price per hour</label>
+    <input type="number" asp-for="PricePerHour" required step="0.01" />
+
+    <label>Table status</label>
+    <select asp-for="Status" asp-items="Html.GetEnumSelectList<TableStatus>()"></select>
+
+    <button type="submit">Add table</button>
+</form>
+
+@* <h2>Додати столик</h2>
 
 <form method="post">
     <label>Номер столика:</label>
@@ -15,3 +34,4 @@
 
     <button type="submit">Додати</button>
 </form>
+ *@

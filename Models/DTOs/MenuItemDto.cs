@@ -10,8 +10,10 @@ namespace Restaurant.Models.DTOs
         [Required, Range(1, 10000)]
         public decimal Price { get; set; }
 
+        [Required]
         public string? Description { get; set; }
 
+        [Required]
         public string? ImageUrl { get; set; }
     }
 }

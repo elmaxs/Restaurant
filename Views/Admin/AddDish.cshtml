@@ -4,7 +4,25 @@
     ViewData["Title"] = "Додати страву";
 }
 
-<h2>Додати страву</h2>
+<h2>Add dishes</h2>
+
+<form method="post">
+    <label>Name:</label>
+    <input type="text" asp-for="Name" required />
+
+    <label>Price</label>
+    <input type="number" asp-for="Price" required step="0.01" />
+
+    <label>Description</label>
+    <textarea asp-for="Description"></textarea>
+
+    <label>Image Url</label>
+    <input type="text" asp-for="ImageUrl" required />
+
+    <button type="submit">Create</button>
+</form>
+
+@* <h2>Додати страву</h2>
 
 <form method="post">
     <label>Назва:</label>
@@ -20,4 +38,4 @@
     <input type="text" asp-for="ImageUrl" />
 
     <button type="submit">Додати</button>
-</form>
+</form> *@
